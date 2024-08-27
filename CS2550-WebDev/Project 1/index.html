@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<!-- !DOCTYPE html tells browser this is using HTML5 -->
+<!-- EXAMPLE CODE HEADER/DISCLAIMER
+ 
+Project:  Project1-About Me
+Name: Ken Jenson
+Submitted: 8/26/21
+ 
+I declare that the following source code was written by me, or provided
+by the instructor for this project. I understand that copying source
+code from any other source, providing source code to another student, 
+or leaving my code on a public web site constitutes cheating.
+I acknowledge that  If I am found in violation of this policy this may result
+in a zero grade, a permanent record on file and possibly immediate failure of the class.
+ 
+Reflection (1-2 paragraphs):  I really enjoyed writing this program, but had trouble with getting the 
+weekly schedule to look similar to the one in the assignment description. Other than that, writing HTML
+is a lot of fun! I have a very small amount of experience writing some HTML so it wasn't too tough so 
+I am excited to learn more!  
+-->
+<html>
+    <head>
+        <title>About Brady Shimanek</title>
+        <style>
+            body {
+                background-image: url("f4ac6aac3afb587f6cae04155656fca3.jpg");
+                background-repeat: repeat;
+                background-size: auto;
+                background-position: top left;
+                font-family: "Arial", sans-serif;
+            }
+
+            a {
+                text-decoration: none;
+            }
+
+            a:hover {
+                text-decoration: underline;
+            }
+
+            img {
+                float: right;
+                margin: 0 0 10px 10px
+            }
+
+            .poem {
+                text-align: center;
+                margin: 20px auto;
+                display: block;
+                width: fit-content;
+            }
+
+            table {
+                table-layout: fixed;
+                width: 100;
+            }
+
+            th, td {
+                width: 16.6%;
+            }
+        </style>
+    </head>
+
+    <body>
+        <main>
+            <header>
+                <h1>Brady Shimanek</h1>
+            </header>
+
+            <img src="IMG_6247.JPG" height="333" width="500">
+
+            <h2>Personal Info:</h2>
+            <ul>
+                <li><b>Major:</b> Software Engineering</li>
+                <li><b>High School info:</b> Lone Peak -- Class of 2019</li>
+                <li><b>Current Year at UVU:</b> Junior</li>
+                <li><b>Favorite Flavor of Ice Cream:</b> Vanilla, or if we are talking milkshakes, then Reese's</li>
+            </ul>
+
+            <h2>My Five Favorite Books</h2>
+            <p>This list is in no particular order, but these are my favorites:</p>
+            <ol>
+                <li><i>Michael Vey: The Prisoner of Cell 25</i> by <a href="https://richardpaulevans.com/" target="_blank">Richard Paul Evans?</a></li>
+                <li><i>Michael Vey: Rise of the Elgen</i> by <a href="https://richardpaulevans.com/" target="_blank">Richard Paul Evans</a></li>
+                <li><i>Harry Potter and the Prisoner of Azkaban</i> by <a href="https://www.jkrowling.com/" target="_blank">J.K. Rowling</a></li>
+                <li><i>Harry Potter and the Sorcerer's Stone</i> by <a href="https://www.jkrowling.com/" target="_blank">J.K. Rowling</a></li>
+                <li><i>Mistborn: The Final Empire</i> by <a href="https://www.brandonsanderson.com/" target="_blank">Brandon Sanderson</a></li>
+            </ol>
+
+            <h2 class="poem">Focus: A Haiku About My Study Music</h2>
+            <p class="poem">This haiku was inspired by the current song I was listening to when I wrote it. If you've seen Kung Fu Panda, you'll know the song.</p>
+            <p class="poem"><i>Ode to my master</i></p>
+            <p class="poem"><i>He transcends beyond this life</i></p>
+            <p class="poem"><i>Oogway ascended</i></p>
+
+            <h2>My Personal Interests</h2>
+            <p>I like playing music. Don't get it twisted--just because I like playing it, doesn't mean that I am <i>good</i> at playing it. I mainly just like the way 
+                it sounds when I learn a few chords and make up some songs on my own. My main instruments are the piano, guitar, and electric guitar.</p>
+            <p>I also like sports. My favorite sports are Basketball and Football. My favorite NBA team is the Utah Jazz of course. My favorite NFL team is the Dolphins.
+                I used to live there for a couple years, and I never really paid attention to the NFL until I decided one day that it was fun to have a team that I can 
+                be connected to. My favorite college football teams are the U of U and BYU. Always been a BYU fan, but continually disappointed in them haha!
+            </p>
+            <p>Another thing about me is that I like fishing. Mainly in the ocean, but seeing that I live in the great landlocked state of Utah, fishing in the ocean is
+                pretty few and far between. I don't mind fishing in the lakes around here, but I personally don't have a boat or anything to get me out in the middle of
+                the body of water to get the best fish. The great thing about ocean fishing is you can fish from a pier, or really anywhere and catch some of the coolest
+                fish ever. And yes, I have caught a couple sharks.
+            </p>
+
+
+            <h2>Class Schedule</h2>
+            <table border="1" cellspacing="3" cellpadding="3">
+                <caption>Weekly Class and Work Schedule</caption>
+                <tr>
+                    <th></th>
+                    <th>Monday</th>
+                    <th>Tuesday</th>
+                    <th>Wednesday</th>
+                    <th>Thursday</th>
+                    <th>Friday</th>
+                </tr>
+                <tr>
+                    <td>7:00</td>
+                    <td rowspan="12">Work</td>
+                    <td></td>
+                    <td rowspan="12">Work</td>
+                    <td></td>
+                    <td rowspan="12">Work</td>
+                </tr>
+                <tr>
+                    <td>7:30</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>8:00</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>8:30</td>
+                    <td rowspan="3">CS 2370 C++</td>
+                    <td rowspan="3">CS 2370 C++</td>
+                </tr>
+                <tr><td>9:00</td></tr>
+                <tr><td>9:30</td></tr>
+                <tr>
+                    <td>10:00</td>
+                    <td rowspan="3">CS 2450 SWE</td>
+                    <td rowspan="3">CS 2450 SWE</td>
+                </tr>
+                <tr>
+                    <td>10:30</td>
+                </tr>
+                <tr><td>11:00</td></tr>
+                <tr>
+                    <td>11:30</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>12:00</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>12:30</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>1:00</td>
+                    <td rowspan="2">Lunch</td>
+                    <td rowspan="3">CS 2600 Networks 1</td>
+                    <td rowspan="2">Lunch</td>
+                    <td rowspan="3">CS 2600 Networks 1</td>
+                    <td rowspan="2">Lunch</td>
+                </tr>
+                <tr><td>1:30</td></tr>
+                <tr>
+                    <td>2:00</td>
+                    <td rowspan="7">Web Dev HW</td>
+                    <td rowspan="7">Web Dev HW</td>
+                    <td rowspan="7">Web Dev HW</td>
+                </tr>
+                <tr>
+                    <td>2:30</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>3:00</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>3:30</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>4:00</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>4:30</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>5:00</td>
+                    <td rowspan="2">Dinner</td>
+                    <td rowspan="2">Dinner</td>
+                </tr>
+                <tr>
+                    <td>5:30</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>6:00</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>6:30</td>
+                    <td rowspan="2">Dinner</td>
+                    <td></td>
+                    <td rowspan="2">Dinner</td>
+                    <td></td>
+                    <td rowspan="2">Dinner</td>
+                </tr>
+                <tr>
+                    <td>7:00</td>   
+                    <td></td>   
+                    <td></td>
+                </tr>
+            </table>
+
+            <footer>
+            </footer>
+
+            <p>--SELF GRADE--</p>
+            <p>HEADER 'A'</p>
+            <p>PERSONAL INFO 'A'</p>
+            <p>FAVORITE BOOKS 'A'</p>
+            <p>HAIKU 'A'</p>
+            <p>ESSAY 'A'</p>
+            <p>SCHEDULE 'A'</p>
+            <p>----</p>
+            <p>--EXTRA ITEMS COMPLETED--</p>
+            <p>REPEATING BKG IMG 'YES'</p>
+            <p>CHANGE FONT 'YES'</p>
+            <p>RT ALIGN PHOTO 'YES'</p>
+            <p>'CENTERED HAIKU 'YES'</p>
+            <p>TABLE-EQUAL COL WIDTH 'YES'</p>
+
+        </main>
+
+    </body>
+
+
+</html>
