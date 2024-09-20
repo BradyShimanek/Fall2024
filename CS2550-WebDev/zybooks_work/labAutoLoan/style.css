@@ -1,0 +1,65 @@
+body {
+    font-family: 'Roboto', 'Helvetica', sans-serif;
+}
+
+h1 {
+    font-size: 34px;
+    color: #444444
+}
+
+.container {
+    text-align: center;
+    margin: 5px;
+    font-size: 13px;
+}
+
+.offer {
+    display: inline-block;
+    width: 400px;
+    margin: 4px;
+    text-align: center;
+    border: 1px solid #cccccc;
+}
+
+.offer-title {
+    font-style: bold;
+    font-size: 14px;
+    color: #ffffff;
+    background-color: #00b3b3;
+    padding: 15px;
+}
+
+.offer-contents {
+    padding: 20px;
+    background-color: #fafafa;
+}
+
+table {
+    width: 100%;
+    background-color: #ffffff;
+    border-spacing: 0;
+}
+
+th {
+    font-size: 12px;
+    font-weight: bold;
+    color: #777777;
+    padding: 10px;
+    margin: 0;
+    text-align: left;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+td {
+    font-weight: lighter;
+    color: #444444;
+    padding: 20px 10px;
+    text-align: left;
+    border-bottom: 1px solid #f1f1f1;
+    margin: 0;
+}
+
+.final-value {
+    font-weight: bold;
+    color: #2222ff;
+}
