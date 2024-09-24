@@ -1,0 +1,36 @@
+#container {
+    display: grid;
+    text-align: center;
+    grid-template-columns: 50px 50px 50px;
+ 
+    grid-template-areas: 
+    "b C C"
+    "A C C"
+    "D E E";
+ 
+ }
+ 
+ #item-a {
+    background: cornflowerblue;
+    grid-area: a;
+ }
+ 
+ #item-b {
+    background: khaki;
+    grid-area: b;
+ }
+ 
+ #item-c {
+    background: darkseagreen;
+    grid-area: c;
+ }
+ 
+ #item-d {
+    background: goldenrod;
+    grid-area: d;
+ }
+ 
+ #item-e {
+    background: lemonchiffon;
+    grid-area: e;
+ }
