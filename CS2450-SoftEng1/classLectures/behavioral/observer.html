@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>observer.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h3 id="observer-design-pattern-keeping-things-in-sync"><strong>Observer Design Pattern: Keeping Things in Sync</strong></h3>
+<p>The <strong>Observer Design Pattern</strong> is one of the most widely used <strong>behavioral design patterns</strong> in software development. Its primary goal is to allow one object (the <strong>subject</strong>) to maintain a list of dependent objects (the <strong>observers</strong>) and notify them of any state changes, typically by calling one of their methods. This pattern is especially useful when you need a <strong>one-to-many relationship</strong> between objects, ensuring that when one object changes state, all dependent objects are <strong>automatically updated</strong>.</p>
+<hr>
+<h3 id="why-is-the-observer-pattern-important"><strong>Why Is the Observer Pattern Important?</strong></h3>
+<p>The Observer Pattern provides a <strong>decoupled way</strong> for objects to interact with each other. Instead of objects directly querying each other to detect changes, the subject <strong>broadcasts notifications</strong>, allowing observers to react accordingly. This pattern helps maintain <strong>loose coupling</strong> between objects, making the system more <strong>flexible</strong> and <strong>scalable</strong>.</p>
+<p>For example, think of a stock trading platform: if the stock price changes (the <strong>subject</strong>), all traders (the <strong>observers</strong>) need to be notified so they can react to the new price. The Observer Pattern handles this efficiently, without each trader constantly querying for updates.</p>
+<hr>
+<h3 id="key-concepts-of-the-observer-pattern"><strong>Key Concepts of the Observer Pattern</strong></h3>
+<ul>
+<li>
+<p><strong>Subject</strong>: The object whose state is being monitored. It contains methods to <strong>attach</strong>, <strong>detach</strong>, and <strong>notify</strong> observers.</p>
+</li>
+<li>
+<p><strong>Observer</strong>: Objects that are interested in being notified when the subject changes. Observers define a method that will be called when the subject sends a notification.</p>
+</li>
+<li>
+<p><strong>Notification Mechanism</strong>: When the subject’s state changes, it <strong>notifies</strong> all registered observers by calling their update methods.</p>
+</li>
+</ul>
+<hr>
+<h3 id="when-to-use-the-observer-pattern"><strong>When to Use the Observer Pattern</strong></h3>
+<ul>
+<li>
+<p><strong>Event-driven systems</strong>: When you need to notify multiple objects about changes in another object’s state, such as in <strong>user interfaces</strong>, <strong>real-time systems</strong>, or <strong>distributed applications</strong>.</p>
+</li>
+<li>
+<p><strong>Decoupling objects</strong>: When objects need to communicate but you want to avoid tight coupling between them.</p>
+</li>
+<li>
+<p><strong>Broadcasting state changes</strong>: When a single change should result in updates across multiple dependent objects, such as in <strong>MVC frameworks</strong>, <strong>GUI elements</strong>, or <strong>pub-sub architectures</strong>.</p>
+</li>
+</ul>
+<hr>
+<h3 id="real-world-analogy-the-newsletter-subscription"><strong>Real-World Analogy: The Newsletter Subscription</strong></h3>
+<p>Imagine subscribing to a <strong>newsletter</strong>. You’re an <strong>observer</strong>, and the newsletter service is the <strong>subject</strong>. Whenever a new edition is released, the newsletter service (subject) sends it to all the subscribers (observers). The subscribers don’t have to constantly check for new editions. They’re notified automatically.</p>
+<p>Similarly, in software, the <strong>Observer Pattern</strong> allows observers to register interest in receiving updates from the subject, and they are automatically notified when a change occurs.</p>
+<hr>
+<h3 id="basic-components-of-the-observer-pattern"><strong>Basic Components of the Observer Pattern</strong></h3>
+<img src="img/cd_observer.svg" alt="Observer Pattern UML Diagram" width="600"/>
+<ul>
+<li><strong>Subject</strong>: Declares methods for attaching, detaching, and notifying observers.</li>
+<li><strong>ConcreteSubject</strong>: Implements the subject, maintaining its state and notifying observers when the state changes.</li>
+<li><strong>Observer</strong>: Declares the <code>update()</code> method for receiving notifications.</li>
+<li><strong>ConcreteObserver</strong>: Implements the observer and reacts to state changes.</li>
+</ul>
+<hr>
+<h3 id="hands-on-example-observer-pattern-in-python"><strong>Hands-On Example: Observer Pattern in Python</strong></h3>
+<p>Let’s dive into a hands-on example of the <strong>Observer Pattern</strong> using Python. We’ll create a <strong>Weather Station</strong> (subject) that tracks temperature and updates multiple <strong>display devices</strong> (observers) when the temperature changes.</p>
+<h4 id="scenario-weather-station-and-display-devices">Scenario: <strong>Weather Station and Display Devices</strong></h4>
+<p>We’ll implement a weather station that monitors temperature. Multiple display devices will observe the station, and every time the temperature changes, the display devices will be notified.</p>
+<img src="img/cd_observer_weather.svg" alt="Observer Pattern UML Diagram for Weather Station Example" width="600"/>
+<h4 id="step-by-step-code-example"><strong>Step-by-Step Code Example</strong>:</h4>
+<ol>
+<li><strong>Observer Interface</strong>: Defines the <code>update()</code> method that observers must implement.</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Observer</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">update</span><span class="hljs-params">(self, temperature)</span>:</span>
+        <span class="hljs-keyword">pass</span>
+</div></code></pre>
+<ol start="2">
+<li><strong>Concrete Observer (Display Devices)</strong>: Implements the observer interface and reacts to updates.</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PhoneDisplay</span><span class="hljs-params">(Observer)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">update</span><span class="hljs-params">(self, temperature)</span>:</span>
+        print(<span class="hljs-string">f"Phone display: The current temperature is <span class="hljs-subst">{temperature}</span>°C"</span>)
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WindowDisplay</span><span class="hljs-params">(Observer)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">update</span><span class="hljs-params">(self, temperature)</span>:</span>
+        print(<span class="hljs-string">f"Window display: The current temperature is <span class="hljs-subst">{temperature}</span>°C"</span>)
+</div></code></pre>
+<ol start="3">
+<li><strong>Subject Interface (Weather Station)</strong>: Defines methods for attaching, detaching, and notifying observers.</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Subject</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">attach</span><span class="hljs-params">(self, observer)</span>:</span>
+        <span class="hljs-keyword">pass</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">detach</span><span class="hljs-params">(self, observer)</span>:</span>
+        <span class="hljs-keyword">pass</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">notifyObservers</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">pass</span>
+</div></code></pre>
+<ol start="4">
+<li><strong>Concrete Subject (Weather Station)</strong>: Implements the subject and manages the state (temperature) and observer list.</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WeatherStation</span><span class="hljs-params">(Subject)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self)</span>:</span>
+        self._observers = []
+        self._temperature = <span class="hljs-number">0</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">attach</span><span class="hljs-params">(self, observer)</span>:</span>
+        self._observers.append(observer)
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">detach</span><span class="hljs-params">(self, observer)</span>:</span>
+        self._observers.remove(observer)
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">notifyObservers</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">for</span> observer <span class="hljs-keyword">in</span> self._observers:
+            observer.update(self._temperature)
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">set_temperature</span><span class="hljs-params">(self, temperature)</span>:</span>
+        self._temperature = temperature
+        self.notifyObservers()
+</div></code></pre>
+<ol start="5">
+<li><strong>Client Code</strong>: Create the weather station and attach observers.</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    <span class="hljs-comment"># Create a weather station (subject)</span>
+    station = WeatherStation()
+
+    <span class="hljs-comment"># Create displays (observers)</span>
+    phone_display = PhoneDisplay()
+    window_display = WindowDisplay()
+
+    <span class="hljs-comment"># Attach observers to the weather station</span>
+    station.attach(phone_display)
+    station.attach(window_display)
+
+    <span class="hljs-comment"># Simulate temperature changes</span>
+    station.set_temperature(<span class="hljs-number">25</span>)  <span class="hljs-comment"># Notifies observers: Phone and Window displays</span>
+    station.set_temperature(<span class="hljs-number">30</span>)  <span class="hljs-comment"># Notifies observers again with the new temperature</span>
+</div></code></pre>
+<p><strong>Output</strong>:</p>
+<pre class="hljs"><code><div>Phone display: The current temperature is 25°C
+Window display: The current temperature is 25°C
+Phone display: The current temperature is 30°C
+Window display: The current temperature is 30°C
+</div></code></pre>
+<h4 id="explanation"><strong>Explanation</strong>:</h4>
+<ul>
+<li>
+<p><strong>WeatherStation</strong>: The subject (weather station) holds the temperature and a list of observers. It calls <code>notifyObservers()</code> whenever the temperature changes.</p>
+</li>
+<li>
+<p><strong>PhoneDisplay</strong> and <strong>WindowDisplay</strong>: These are concrete observers that implement the <code>update()</code> method. They print the updated temperature whenever the subject (weather station) notifies them.</p>
+</li>
+<li>
+<p><strong>Client Code</strong>: The observers (displays) are attached to the subject (weather station), and they automatically receive notifications when the temperature changes.</p>
+</li>
+</ul>
+<hr>
+<h3 id="real-world-applications-of-the-observer-pattern"><strong>Real-World Applications of the Observer Pattern</strong></h3>
+<ul>
+<li>
+<p><strong>User Interfaces</strong>: When developing <strong>GUIs</strong>, various components need to react to user input or system changes. For instance, clicking a button might trigger updates in multiple parts of the UI.</p>
+</li>
+<li>
+<p><strong>Stock Market Tickers</strong>: In stock trading platforms, prices (subject) change frequently, and traders or systems (observers) need to be notified in real-time to react to price fluctuations.</p>
+</li>
+<li>
+<p><strong>Event Management Systems</strong>: Many applications use <strong>pub-sub systems</strong> where a publisher (subject) sends notifications to all subscribers (observers). This is used in <strong>event-driven architectures</strong> like message queues or notification services.</p>
+</li>
+</ul>
+<p><strong>Example</strong>: &quot;In a real-time stock trading system, every time a stock price changes, all registered traders receive the update. This is exactly how the <strong>Observer Pattern</strong> functions: the <strong>subject</strong> (stock) notifies all <strong>observers</strong> (traders) about the change.&quot;</p>
+<hr>
+<h3 id="advantages-and-disadvantages"><strong>Advantages and Disadvantages</strong></h3>
+<h4 id="advantages"><strong>Advantages</strong>:</h4>
+<ul>
+<li>
+<p><strong>Decoupling</strong>: The subject and observers are loosely coupled. The subject doesn’t need to know anything about the observers, only that they need to be notified.</p>
+</li>
+<li>
+<p><strong>Scalability</strong>: New observers can be easily added without changing the subject's code. The system scales naturally as more observers subscribe.</p>
+</li>
+<li>
+<p><strong>Reactivity</strong>: Observers are automatically updated when the subject changes, which keeps the system responsive and in sync.</p>
+</li>
+</ul>
+<h4 id="disadvantages"><strong>Disadvantages</strong>:</h4>
+<ul>
+<li>
+<p><strong>Unexpected updates</strong>: If not carefully managed, observers might receive too many or too frequent updates, leading to performance issues.</p>
+</li>
+<li>
+<p><strong>Memory leaks</strong>: If observers are not properly detached when they are no longer needed, they may still receive updates, leading to memory leaks.</p>
+</li>
+</ul>
+<hr>
+<h3 id="best-practices-for-the-observer-pattern"><strong>Best Practices for the Observer Pattern</strong></h3>
+<ol>
+<li>
+<p><strong>Use Weak References in Large Systems</strong>: In systems with many observers, consider using <strong>weak references</strong> so that observers can be garbage-collected when they are no longer needed.</p>
+</li>
+<li>
+<p><strong>Avoid Frequent Notifications</strong>: Batch notifications where possible. For example, rather than notifying observers every time a small change occurs, consider notifying them after a batch of changes has been made.</p>
+</li>
+<li>
+<p><strong>Ensure Proper Detachment</strong>: Always make sure that observers can <strong>detach</strong> from the subject when they no longer need updates. This prevents memory leaks and redundant updates.</p>
+</li>
+</ol>
+<hr>
+<h3 id="pitfalls-to-avoid"><strong>Pitfalls to Avoid</strong></h3>
+<ul>
+<li>
+<p><strong>Over-notifying</strong>: If the subject changes frequently and each change triggers notifications to all observers, performance can suffer. Consider optimizing when notifications are sent.</p>
+</li>
+<li>
+<p><strong>Observer Spamming</strong>: Avoid situations where</p>
+</li>
+</ul>
+<p>observers are flooded with irrelevant or unnecessary updates. Make sure the updates they receive are actually useful to them.</p>
+<hr>
+<h3 id="conclusion-decoupling-and-syncing-with-observer"><strong>Conclusion: Decoupling and Syncing with Observer</strong></h3>
+<p>The <strong>Observer Pattern</strong> is a powerful tool for decoupling objects in event-driven systems. It allows you to <strong>broadcast changes</strong> in one object to multiple interested observers, keeping your system in sync and up-to-date. This pattern is perfect for <strong>GUIs</strong>, <strong>real-time systems</strong>, and <strong>distributed architectures</strong>, where changes need to be reflected across multiple components.</p>
+<p>By using the Observer Pattern, you can keep objects <strong>loosely coupled</strong>, ensuring your system is <strong>scalable</strong> and <strong>maintainable</strong> as it grows.</p>
+<h3 id="stock-market-example-applying-the-observer-pattern">Stock Market Example: Applying the Observer Pattern</h3>
+<p>In this example, we'll simulate a <strong>Stock Market Ticker</strong> where <strong>traders</strong> (observers) get notified whenever a stock price changes. The <strong>StockMarket</strong> is the <strong>subject</strong> that holds the stock price, and each trader reacts to price changes when notified. Traders could be of different types, such as <strong>LongTermTrader</strong> and <strong>DayTrader</strong>, each having their own reaction to the stock price updates.</p>
+<hr>
+<h2 id="real-world-scenario-stock-market-ticker"><strong>Real-World Scenario: Stock Market Ticker</strong></h2>
+<p>In the real world, when the price of a stock changes, various entities—like investors, traders, and automated trading systems—need to be <strong>notified</strong> immediately so they can react to the change. These entities are <strong>observers</strong>, and the stock itself acts as the <strong>subject</strong>.</p>
+<p>In this scenario:</p>
+<ul>
+<li>The <strong>StockMarket</strong> represents the stock or market that holds the current price.</li>
+<li>The <strong>traders</strong> (such as day traders and long-term traders) are the observers, and they get notified whenever there is a change in the stock price.</li>
+</ul>
+<hr>
+<h3 id="key-components-in-the-stock-market-observer-pattern"><strong>Key Components in the Stock Market Observer Pattern:</strong></h3>
+<ol>
+<li><strong>Subject (StockMarket)</strong>: The stock market that keeps track of stock prices and notifies all traders when the price changes.</li>
+<li><strong>Observer (Trader)</strong>: Traders (or other entities) that observe stock price changes. They get updated with the new price when the stock market notifies them.</li>
+<li><strong>Concrete Observers (LongTermTrader, DayTrader)</strong>: These represent different kinds of traders who react to stock price changes in their own way.</li>
+<li><strong>Notification</strong>: When the stock price changes, all registered traders are notified with the new price.</li>
+</ol>
+<img src="img/cd_observer_stock.svg" alt="Observer Pattern UML Diagram for Stock Market Example" width="600"/>
+<h3 id="step-by-step-python-code-example-for-stock-market-observer-pattern"><strong>Step-by-Step Python Code Example for Stock Market Observer Pattern</strong></h3>
+<p>Let's now implement the <strong>StockMarket</strong> (subject) and <strong>traders</strong> (observers) in Python using the Observer pattern.</p>
+<hr>
+<h3 id="1-observer-interface-trader"><strong>1. Observer Interface (<code>Trader</code>)</strong></h3>
+<p>First, we'll define the <code>Trader</code> interface, which declares the <code>update()</code> method that all concrete traders must implement.</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Trader</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">update</span><span class="hljs-params">(self, price: float)</span>:</span>
+        <span class="hljs-keyword">pass</span>
+</div></code></pre>
+<ul>
+<li><strong><code>update()</code></strong>: This method will be called by the <code>StockMarket</code> when the price changes, and each trader will react accordingly.</li>
+</ul>
+<hr>
+<h3 id="2-concrete-observers-longtermtrader-daytrader"><strong>2. Concrete Observers (<code>LongTermTrader</code>, <code>DayTrader</code>)</strong></h3>
+<p>Next, we’ll define two types of traders: <strong>LongTermTrader</strong> and <strong>DayTrader</strong>. Both classes implement the <code>update()</code> method and provide specific responses when they are notified of a stock price change.</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LongTermTrader</span><span class="hljs-params">(Trader)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">update</span><span class="hljs-params">(self, price: float)</span>:</span>
+        print(<span class="hljs-string">f"Long-term trader notified of new stock price: <span class="hljs-subst">{price}</span>"</span>)
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DayTrader</span><span class="hljs-params">(Trader)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">update</span><span class="hljs-params">(self, price: float)</span>:</span>
+        print(<span class="hljs-string">f"Day trader notified of new stock price: <span class="hljs-subst">{price}</span>"</span>)
+</div></code></pre>
+<ul>
+<li><strong>LongTermTrader</strong>: This trader is notified about long-term stock movements, and in our case, simply prints the new stock price.</li>
+<li><strong>DayTrader</strong>: Similarly, this trader responds to price updates but could represent faster, real-time reactions to stock price changes.</li>
+</ul>
+<hr>
+<h3 id="3-subject-interface-stockmarket"><strong>3. Subject Interface (<code>StockMarket</code>)</strong></h3>
+<p>Now, we’ll define the <code>StockMarket</code> as the <strong>subject</strong> that holds a list of traders (observers) and has methods to attach, detach, and notify them.</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">StockMarket</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self)</span>:</span>
+        self._traders = []  <span class="hljs-comment"># List to hold all traders (observers)</span>
+        self._price = <span class="hljs-number">0.0</span>   <span class="hljs-comment"># Initial stock price</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">attach</span><span class="hljs-params">(self, trader: Trader)</span>:</span>
+        self._traders.append(trader)
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">detach</span><span class="hljs-params">(self, trader: Trader)</span>:</span>
+        self._traders.remove(trader)
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">notifyObservers</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">for</span> trader <span class="hljs-keyword">in</span> self._traders:
+            trader.update(self._price)
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">set_price</span><span class="hljs-params">(self, price: float)</span>:</span>
+        self._price = price
+        print(<span class="hljs-string">f"\nStockMarket: New stock price is <span class="hljs-subst">{price}</span>"</span>)
+        self.notifyObservers()  <span class="hljs-comment"># Notify all traders when price changes</span>
+</div></code></pre>
+<ul>
+<li><strong><code>attach()</code></strong>: Adds a trader (observer) to the list of traders who are notified when the price changes.</li>
+<li><strong><code>detach()</code></strong>: Removes a trader from the notification list.</li>
+<li><strong><code>notifyObservers()</code></strong>: Notifies all attached traders of the new stock price.</li>
+<li><strong><code>set_price()</code></strong>: Updates the stock price and calls <code>notifyObservers()</code> to inform the traders of the change.</li>
+</ul>
+<hr>
+<h3 id="4-client-code-putting-it-all-together"><strong>4. Client Code (Putting it all together)</strong></h3>
+<p>Finally, we’ll write the client code to simulate the stock market and traders. We'll attach traders to the stock market, update the stock price, and observe how the traders get notified.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    <span class="hljs-comment"># Create the stock market (subject)</span>
+    stock_market = StockMarket()
+
+    <span class="hljs-comment"># Create traders (observers)</span>
+    long_term_trader = LongTermTrader()
+    day_trader = DayTrader()
+
+    <span class="hljs-comment"># Attach traders to the stock market</span>
+    stock_market.attach(long_term_trader)
+    stock_market.attach(day_trader)
+
+    <span class="hljs-comment"># Change the stock price (this will notify all traders)</span>
+    stock_market.set_price(<span class="hljs-number">150.0</span>)
+    stock_market.set_price(<span class="hljs-number">155.5</span>)
+
+    <span class="hljs-comment"># Detach a trader and change the price again</span>
+    stock_market.detach(day_trader)
+    stock_market.set_price(<span class="hljs-number">160.0</span>)
+</div></code></pre>
+<hr>
+<h3 id="output"><strong>Output</strong></h3>
+<pre class="hljs"><code><div>StockMarket: New stock price is 150.0
+Long-term trader notified of new stock price: 150.0
+Day trader notified of new stock price: 150.0
+
+StockMarket: New stock price is 155.5
+Long-term trader notified of new stock price: 155.5
+Day trader notified of new stock price: 155.5
+
+StockMarket: New stock price is 160.0
+Long-term trader notified of new stock price: 160.0
+</div></code></pre>
+<h3 id="explanation-of-the-output"><strong>Explanation of the Output</strong>:</h3>
+<ul>
+<li>When the stock price changes, both <strong>LongTermTrader</strong> and <strong>DayTrader</strong> are notified by the <strong>StockMarket</strong>.</li>
+<li>After the <code>DayTrader</code> is detached, only the <strong>LongTermTrader</strong> receives updates when the stock price changes again.</li>
+</ul>
+<hr>
+<h3 id="explanation-of-key-components"><strong>Explanation of Key Components</strong></h3>
+<ol>
+<li>
+<p><strong>StockMarket</strong>: This is the <strong>subject</strong> that maintains the stock price and notifies all registered traders (observers) whenever the price changes. The <code>set_price()</code> method updates the price and triggers the notification to all traders.</p>
+</li>
+<li>
+<p><strong>Trader (interface)</strong>: This defines the <code>update()</code> method that all observers must implement. It ensures that each trader reacts to price changes in a uniform manner.</p>
+</li>
+<li>
+<p><strong>LongTermTrader and DayTrader</strong>: These are the <strong>concrete observers</strong> that react to stock price updates. They each implement the <code>update()</code> method and print out the new price when notified.</p>
+</li>
+<li>
+<p><strong>Client Code</strong>: This code simulates the stock market's operations by changing the stock price, attaching and detaching traders, and showing how the traders respond to price changes.</p>
+</li>
+</ol>
+
+</body>
+</html>

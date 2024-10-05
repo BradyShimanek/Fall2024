@@ -1,14 +1,23 @@
-//
-//  main.cpp
-//  lab_827_optional
-//
-//  Created by Brady Shimanek on 9/24/24.
-//
-
 #include <iostream>
+#include <string>
+#include "Team.h"
+using namespace std;
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
-    return 0;
+int main() {
+   string name;
+   int wins;
+   int losses;
+   Team team;
+
+   cin >> name;
+   cin >> wins;
+   cin >> losses;
+
+   team.SetName(name);
+   team.SetWins(wins);
+   team.SetLosses(losses);
+
+   team.PrintStanding();
+   
+   return 0;
 }

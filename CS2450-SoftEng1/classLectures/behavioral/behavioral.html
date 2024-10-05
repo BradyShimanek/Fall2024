@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>behavioral.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="behavioral-design-patterns-crafting-smooth-interactions">Behavioral Design Patterns: Crafting Smooth Interactions</h1>
+<blockquote>
+<p><strong>Description</strong>: Explore the art of object collaboration with behavioral design patterns. Learn how to manage complex workflows, improve communication between objects, and create flexible, maintainable systems that adapt to change with ease.</p>
+</blockquote>
+<p><strong>Behavioral design patterns</strong> focus on how objects communicate and interact with each other. These patterns help define how responsibilities are divided and how objects collaborate to complete tasks in a flexible, efficient, and decoupled manner. The goal is to improve communication between objects while keeping them loosely coupled, making your code easier to maintain and extend.</p>
+<h1 id="key-goals-of-behavioral-design-patterns">Key Goals of Behavioral Design Patterns</h1>
+<ol>
+<li><strong>Simplify complex workflows</strong>: These patterns help manage complex interactions between objects by defining clear communication paths.</li>
+<li><strong>Promote loose coupling</strong>: Behavioral patterns reduce dependencies between objects, making it easier to change or extend the system without affecting other components.</li>
+<li><strong>Improve flexibility</strong>: By encapsulating behavior and managing interactions dynamically, these patterns allow for more flexible designs that can handle future changes smoothly.</li>
+</ol>
+<h1 id="common-behavioral-design-patterns">Common Behavioral Design Patterns</h1>
+<p>Here’s a look at the most widely used <strong>behavioral design patterns</strong>, along with explanations of why and how they solve real-world communication challenges in software systems.</p>
+<h2 id="1-observer-pattern">1. Observer Pattern</h2>
+<p>The <strong>Observer Pattern</strong> defines a one-to-many relationship between objects. When one object (the subject) changes state, all its dependents (observers) are automatically notified and updated.</p>
+<h3 id="example">Example</h3>
+<p>Think of a <strong>newsletter subscription</strong>. When a new issue of the newsletter is released, it’s automatically sent to all subscribers (observers). Subscribers don’t need to constantly check for updates; they are notified automatically.</p>
+<h3 id="use-case">Use Case</h3>
+<p>When you want to <strong>notify multiple objects</strong> about changes in the state of another object, like in event-driven programming or GUI frameworks.</p>
+<h2 id="strategy-pattern">Strategy Pattern</h2>
+<p>The <strong>Strategy Pattern</strong> allows you to define a family of algorithms or behaviors and make them interchangeable. The client can choose which algorithm to use at runtime, allowing for flexible changes in behavior without modifying the class.</p>
+<h3 id="example">Example</h3>
+<p>Imagine you’re navigating using a <strong>GPS app</strong>. You might want to choose between different strategies for your route: fastest route, shortest distance, or scenic route. The Strategy Pattern lets you easily switch between these strategies without changing how the GPS works.</p>
+<h3 id="use-case">Use Case</h3>
+<p>When you need to <strong>change behavior dynamically</strong>, such as choosing different algorithms at runtime.</p>
+<h2 id="3-command-pattern">3. Command Pattern</h2>
+<p>The <strong>Command Pattern</strong> encapsulates a request or operation as an object, allowing you to parametrize clients with queues, requests, or operations. It also allows for logging, undo/redo operations, and decoupling the sender of a request from its receiver.</p>
+<h3 id="example">Example</h3>
+<p>Think of a <strong>TV remote control</strong>. Each button (like volume up, channel change, power on/off) represents a <strong>command</strong>. You press the button (command), and the TV executes the corresponding action without the remote control knowing how the TV processes the request.</p>
+<h3 id="use-case">Use Case</h3>
+<p>When you need to <strong>queue or log requests</strong>, implement <strong>undo/redo</strong> functionality, or decouple the sender and receiver of a request.</p>
+<h2 id="4-chain-of-responsibility-pattern">4. Chain of Responsibility Pattern</h2>
+<p>The <strong>Chain of Responsibility Pattern</strong> allows a request to be passed through a chain of handlers, where each handler decides whether to process the request or pass it to the next handler in the chain. This decouples the sender of the request from the receiver.</p>
+<h3 id="example">Example</h3>
+<p>Imagine a <strong>technical support</strong> system where your request is passed through different support levels. If the first support level can’t solve your problem, it passes the request to the next level. Each handler in the chain only processes the request if it has the necessary permissions or knowledge.</p>
+<h3 id="use-case">Use Case</h3>
+<p>When you have a chain of <strong>potential handlers</strong> for a request and want to pass the request along the chain until it’s handled.</p>
+<h2 id="5-template-method-pattern">5. Template Method Pattern</h2>
+<p>The <strong>Template Method Pattern</strong> defines the skeleton of an algorithm in a superclass but allows subclasses to override specific steps of the algorithm without changing its structure.</p>
+<h3 id="example">Example</h3>
+<p>Think of a <strong>coffee shop</strong> where the process of making coffee is the same (boil water, brew coffee, pour into a cup), but the details can vary (add milk, add sugar, or serve it black). The base process remains the same, but subclasses can tweak individual steps.</p>
+<h3 id="use-case">Use Case</h3>
+<p>When you have an algorithm that is mostly the same across classes, but specific steps can be <strong>customized</strong>.</p>
+<h2 id="6-state-pattern">6. State Pattern</h2>
+<p>The <strong>State Pattern</strong> allows an object to change its behavior when its internal state changes. The object will appear to change its class based on its state, providing more flexibility when an object has multiple states to manage.</p>
+<h3 id="example">Example</h3>
+<p>Consider a <strong>vending machine</strong>. Its behavior depends on the state it’s in: no money, money inserted, or item dispensed. Depending on the state, the machine will behave differently when you interact with it.</p>
+<h3 id="use-case">Use Case</h3>
+<p>When an object’s behavior <strong>varies based on its internal state</strong>, such as a workflow engine, game states, or UI components.</p>
+<h2 id="7-mediator-pattern">7. Mediator Pattern</h2>
+<p>The <strong>Mediator Pattern</strong> centralizes complex communication between multiple objects by having them communicate through a <strong>mediator</strong> object, rather than directly with each other. This reduces the complexity of dependencies between interacting objects.</p>
+<h3 id="example">Example</h3>
+<p>Think of an <strong>air traffic control system</strong>. Instead of planes communicating directly with each other, they communicate with the <strong>control tower</strong> (the mediator), which manages and coordinates the flights.</p>
+<h3 id="use-case">Use Case</h3>
+<p>When you have <strong>many-to-many relationships</strong> between objects, and you want to reduce direct dependencies and communication overhead.</p>
+<h2 id="8-visitor-pattern">8. Visitor Pattern</h2>
+<p>The <strong>Visitor Pattern</strong> allows you to add new operations to existing objects without modifying their structure. It separates the algorithm from the objects on which it operates, making it easy to add new functionality as needed.</p>
+<h3 id="example">Example</h3>
+<p>Consider a <strong>tax calculator</strong> that processes different kinds of financial documents (invoices, receipts, bills). Instead of modifying each document class to include tax calculation, you use a visitor object that processes the tax for each document type.</p>
+<h3 id="use-case">Use Case</h3>
+<p>When you need to perform <strong>operations on a group of related objects</strong> without changing their classes, like in compilers or data analysis systems.</p>
+<h1 id="when-to-use-behavioral-design-patterns">When to Use Behavioral Design Patterns</h1>
+<ul>
+<li><strong>Complex object interactions</strong>: When you need to manage complex workflows and interactions between objects.</li>
+<li><strong>Dynamic behavior</strong>: When the behavior of objects needs to change dynamically based on state, environment, or other factors.</li>
+<li><strong>Communication management</strong>: When objects need to communicate, but you want to reduce dependencies or improve efficiency.</li>
+<li><strong>Behavioral flexibility</strong>: When you need the ability to switch between different behaviors or algorithms at runtime without modifying the object’s structure.</li>
+</ul>
+<h1 id="best-practices-for-behavioral-patterns">Best Practices for Behavioral Patterns</h1>
+<ol>
+<li>
+<p><strong>Understand the interaction flow</strong>: These patterns are often about managing <strong>how</strong> objects communicate. Make sure you understand the flow of information and responsibilities before applying a pattern.</p>
+</li>
+<li>
+<p><strong>Keep objects decoupled</strong>: One of the goals of behavioral patterns is to reduce <strong>tight coupling</strong> between objects. Make sure your implementation respects this principle, so your system remains flexible.</p>
+</li>
+<li>
+<p><strong>Consider future changes</strong>: Behavioral patterns are particularly useful when the <strong>behavior of your system may change</strong> in the future. They allow you to introduce new behaviors without major refactoring.</p>
+</li>
+</ol>
+<h1 id="pitfalls-to-avoid">Pitfalls to Avoid</h1>
+<ul>
+<li>
+<p><strong>Overcomplicating simple behaviors</strong>: Some behaviors are simple enough that they don’t need a specific pattern. If the interactions between objects are straightforward, don’t force a pattern into the design.</p>
+</li>
+<li>
+<p><strong>Tight coupling with context</strong>: In patterns like <strong>State</strong> or <strong>Command</strong>, be careful not to couple the context and the behavior too tightly. Doing so defeats the purpose of using the pattern in the first place.</p>
+</li>
+<li>
+<p><strong>Too many patterns</strong>: When applying behavioral patterns, be mindful not to create <strong>too many layers</strong> of abstraction. This can make debugging and maintaining your system harder.</p>
+</li>
+</ul>
+<h1 id="conclusion">Conclusion</h1>
+<p>Behavioral design patterns are essential for building systems where objects need to interact and communicate efficiently. By applying these patterns, you can create more <strong>maintainable, flexible</strong>, and <strong>extensible</strong> systems that can adapt to future changes without needing a complete overhaul.</p>
+<p>These patterns are especially useful in scenarios like <strong>event-driven systems</strong>, <strong>UI development</strong>, and <strong>workflows</strong> where object interactions are frequent and complex. Understanding and applying these patterns will help you manage these interactions with ease.</p>
+<p>By mastering <strong>behavioral design patterns</strong>, you’ll be able to craft systems that are not only functional but also scalable and adaptable to the evolving needs of your projects.</p>
+
+</body>
+</html>

@@ -1,12 +1,30 @@
-//
-//  Team.h
-//  lab_827_optional
-//
-//  Created by Brady Shimanek on 9/24/24.
-//
+#ifndef TEAM_H
+#define TEAM_H
 
-#ifndef Team_h
-#define Team_h
+#include <string>
 
+using namespace std;
 
-#endif /* Team_h */
+class Team {
+private:
+    string name;
+    int wins;
+    int losses;
+    
+public:
+    void SetName(string name);
+    void SetWins(int wins);
+    void SetLosses(int losses);
+    
+   
+    string GetName() const;
+    int GetWins() const;
+    int GetLosses() const;
+    
+    double GetWinPercentage() const;
+    
+    void PrintStanding() const;
+    
+};
+
+#endif
