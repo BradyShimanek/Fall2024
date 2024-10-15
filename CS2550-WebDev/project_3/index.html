@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fish Hub</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <script src="scripts/main.js" defer></script>
+</head>
+
+<body>
+    <div id="content">
+
+        <header>
+            <div class="header-content">
+                <img src="img/tohp_4x23_210520.jpg" 
+                     alt="A small yellow fish swimming among corals" 
+                     class="small-logo">
+                <h1>Welcome to the Fish Hub!</h1>
+            </div>
+        </header>
+
+        <aside>
+            <nav>
+                <p>Menu</p>
+                <ul class="button-grid">
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                    <li><a href="#contact" class="nav-link">Contact Me</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main>
+            <section id="home" class="grid-container">
+                <figure>
+                    <img src="img/clown_fish.png" 
+                         alt="A clown fish swimming near anemones" 
+                         class="clown_fish">
+                    <figcaption>A clownfish swimming near anemones.</figcaption>
+
+                    <a href="https://www.youtube.com/watch?v=lgUFkM34R7U" target="_blank" class="youtube-button">Clownfish Video</a>
+
+                </figure>
+
+                <div class="welcome-text">
+                    <h2>We're glad you're here!</h2>
+                    <p>
+                        Welcome to Fish Hub, your ultimate destination for all things oceanic fish! Dive into the depths 
+                        of the ocean and discover fascinating facts, explore the diverse species, and learn everything there 
+                        is to know about the wonders of marine life. Whether you're an enthusiast or just curious, this is 
+                        the perfect place to be for all your fish knowledge!
+                    </p>
+                    <p>===============================================================</p>
+                    <p>
+                        Curious about other fascinating fish species? Check out our gallery, where you'll find stunning images and interesting facts about some of the most unique marine creatures from around the world! Just click the 'Show/Hide Gallery' button below!
+                    </p>
+
+                    <button id="view-gallery-button" class="view-details">Show/Hide Gallery</button>
+
+                    <div class="fish-gallery">
+                        <!--Humphead Wrasse-->
+                        <figure class="fish-item">
+                            <img src="img/Cheilinus-undulatus-2.jpg" alt="Humphead Wrasse" class="gallery-img1">
+                            <figcaption>Humphead Wrasse</figcaption>
+                            <button class="view-details" data-target="details-wrasse">View Details</button>
+                            <p id="details-wrasse" class="fish-details">
+                                &ensp;The humphead wrasse (Cheilinus undulatus) is a large species of wrasse mainly found on coral reefs in the Indo-Pacific region. The humphead wrasse is the largest extant member of the family Labridae. Males, typically larger than females, are capable of reaching up to 2 meters and weighing up to 180 kg, but the average length is a little less than 1 meter. Females rarely grow larger than one meter. This species can be easily identified by its large size, thick lips, two black lines behind its eyes, and the hump on the foreheads of larger adults.
+                            </p>
+                        </figure>
+
+                        <!--Mandarinfish-->
+                        <figure class="fish-item">
+                            <img src="img/mandarinfish-2.jpg" alt="Humphead Wrasse" class="gallery-img2">
+                            <figcaption>Mandarinfish</figcaption>
+                            <button class="view-details" data-target="details-mandarinfish">View Details</button>
+                            <p id="details-mandarinfish" class="fish-details">
+                                &ensp;Synchiropus splendidus, the mandarinfish or mandarin dragonet, is a small, brightly colored member of the dragonet family, which is popular in the saltwater aquarium trade. The mandarinfish is native to the Pacific, ranging approximately from the Ryukyu Islands south to Australia. It can usually be found in some of the warmer waters.
+                            </p>
+                        </figure>
+
+                        <!--Hammerhead Shark-->
+                        <figure class="fish-item">
+                            <img src="img/Hammerhead+Jim+Abernethy.jpg" alt="Humphead Wrasse" class="gallery-img3">
+                            <figcaption>Hammerhead Shark</figcaption>
+                            <button class="view-details" data-target="details-hammerhead">View Details</button>
+                            <p id="details-hammerhead" class="fish-details">
+                                &ensp;The hammerhead sharks are a group of sharks that form the family Sphyrnidae, named for the unusual and distinctive form of their heads, which are flattened and laterally extended into a cephalofoil (a T-shape or "hammer"). The shark's eyes are placed one on either end of this T-shaped structure, with their small mouths directly centered and underneath. 
+                                Hammerheads are found worldwide, preferring life in warmer waters along coastlines and continental shelves. Unlike most sharks, some hammerhead species will congregate and swim in large schools during the day, becoming solitary hunters at night.
+                            </p>
+                        </figure> 
+
+                        <!--Leafy Seadragon-->
+                        <figure class="fish-item">
+                            <img src="img/bad_dragon.jpg" alt="Humphead Wrasse" class="gallery-img4">
+                            <figcaption>Leafy Seadragon</figcaption>
+                            <button class="view-details" data-target="details-seadragon">View Details</button>
+                            <p id="details-seadragon" class="fish-details">
+                                &ensp;The leafy seadragon (Phycodurus eques) or Glauert's seadragon, is a marine fish. It is the only member of the genus Phycodurus in the family Syngnathidae, which includes seadragons, pipefish, and seahorses. Though their name makes them seem like they are large, magnificent beasts, it is quite the opposite; they only grow to about 20-24cm and feed on plankton and small crustaceans.
+                            </p>
+                        </figure>
+
+                        <!--Red-lipped Batfish-->
+                        <figure class="fish-item">
+                            <img src="img/redlipped-batfish.gif" alt="Humphead Wrasse" class="gallery-img5">
+                            <figcaption>Red-lipped Batfish</figcaption>
+                            <button class="view-details" data-target="details-batfish">View Details</button>
+                            <p id="details-batfish" class="fish-details">
+                                &ensp;The red-lipped batfish or Galápagos batfish (Ogcocephalus darwini) is a fish of unusual morphology found around the Galápagos Islands and off Peru at depths of 3 to 76 m (10 to 249 ft). This fish is mainly known for its bright red lips. Batfish are not good swimmers; they use their highly adapted pectoral, pelvic and anal fins to "walk" on the ocean floor. When the batfish reaches maturity, its dorsal fin becomes a single spine-like projection (thought to function primarily as a lure for prey).
+                            </p>
+                        </figure>
+
+
+
+
+                        <!-- Gallery Controls -->
+                        <div class="gallery-controls">
+                            <button class="prev-fish">Previous</button>
+                            <button class="next-fish">Next</button>
+                        </div>
+                    </div>
+                    
+                    
+
+                </div>
+            </section>
+
+            <section id="gallery" style="display: none;">
+                <h2>Gallery</h2>
+                <p>Oh no! Looks like this page is under construction. Our collection of beautiful oceanic fish images are on their way! Well, while our fish-men are working on building this beautiful gallery, why don't you go ahead and view our sample gallery on the Home page? Check back soon!</p>
+                <img src="img/under-construction-fish.png" alt="fish men building a structure" class="fish-construction-img">
+            </section>
+
+            <section id="contact" style="display: none;">
+                <h2>Contact Me</h2>
+                <p>Feel free to reach out if you have any questions or suggestions.</p>
+                <p><br>You can reach me via:</p>
+                <div class="contact-info">
+                    
+                    <ul>
+                        <li>Email: fishhubguy@fakeemail.com</li>
+                        <li>Phone: (123)456-7890</li>
+                        <li>Carrier Owl: If you have one like Harry Potter, that works as well.</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 Fish Hub. All rights reserved. (Not legitimate)</p>
+        </footer>
+
+    </div>
+</body>
+
+</html>

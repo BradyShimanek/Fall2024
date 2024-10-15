@@ -1,0 +1,266 @@
+/* Font Import */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600&display=swap');
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    color: #1b262c;
+    font-family: 'Nunito', sans-serif;
+    text-align: center;
+    background-color: #b8d8e4;
+}
+
+#content {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: auto 1fr auto;
+    grid-gap: 20px;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    grid-template-areas:
+        "header header"
+        "aside main"
+        "footer footer";
+    flex: 1;
+}
+
+header {
+    grid-area: header;
+    margin-top: 10px;
+    background-color: #007f5f;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.small-logo {
+    width: 80px;   
+    height: auto;  
+    margin-right: 20px;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+main {
+    grid-area: main;
+    background-color: #d4e2ed;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+aside {
+    grid-area: aside;
+    background-color: #005a44;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    color: white;
+}
+
+nav {
+    width: 100%;
+}
+
+.button-grid {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.nav-link {
+    background-color: #d4e2ed;
+    color: #023e8a;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    width: 80%;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.nav-link:hover {
+    background-color: #007f5f;
+    color: white;
+}
+
+footer {
+    grid-area: footer;
+    margin-bottom: 10px;
+    background-color: #007f5f;
+    padding: 20px;
+    text-align: center;
+}
+
+figure {
+    margin: 0;
+}
+
+figcaption {
+    margin-top: 5px;
+    font-style: italic;
+    color: #1b262c;
+}
+
+.youtube-button {
+    background-color: rgb(223, 3, 3);
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 20px;color: #1b262c;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.youtube-button:hover {
+    background-color: darkred;
+}
+
+.welcome-text {
+    text-align: center;
+}
+
+.gallery-img1 {
+    width: 300px;
+    height: auto;
+}
+
+button {
+    font-family: 'Nunito', sans-serif;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px 20px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+}
+
+#view-gallery-button {
+    background-color: #007f5f;
+    color: white;
+    margin: 20px 0;
+}
+
+#view-gallery-button:hover {
+    background-color: #005a44;
+}
+
+.gallery-controls button {
+    background-color: #023e8a;
+    color: white;
+    margin: 5px;
+}
+
+.gallery-controls button:hover {
+    background-color: #005a44;
+}
+
+.view-details {
+    background-color: #ff6347;
+    color: white;
+    margin-top: 10px;
+}
+
+.view-details:hover {
+    background-color: #e5533a;
+}
+
+.fish-gallery {
+    display: none;
+    background-color: #bdc1c4;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.fish-item {
+    margin-bottom: 20px;
+}
+
+.gallery-img1, 
+.gallery-img2, 
+.gallery-img3, 
+.gallery-img4, 
+.gallery-img5    {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.fish-details {
+    display: none;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #1b262c;
+    text-align: left;
+}
+
+header, 
+aside, 
+main, 
+footer {
+    border-radius: 15px;  
+    overflow: hidden;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);  
+}
+
+.fish-construction-img {
+    width: 600px;
+    height: auto;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80%;
+    text-align: center;
+}
+.contact-info ul {
+    list-style: none;
+    padding: 0;
+}
+.contact-info li {
+    margin: 10px 0;
+}
+
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+    #content {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto 1fr auto;
+        grid-template-areas:
+            "header"
+            "aside"
+            "main"
+            "footer";
+    }
+
+    .nav-link {
+        width: 100%;
+    }
+}
