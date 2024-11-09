@@ -1,4 +1,4 @@
-/* Font Import */
+/* No changes made -- There were no comments on my Proj. 3 submission. */
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600&display=swap');
 
 body {
@@ -14,10 +14,10 @@ body {
 
 #content {
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 1fr 4fr;
     grid-template-rows: auto 1fr auto;
     grid-gap: 20px;
-    max-width: 1200px;
+    max-width: 1450px;
     width: 100%;
     margin: 0 auto;
     grid-template-areas:
@@ -26,7 +26,7 @@ body {
         "footer footer";
     flex: 1;
 }
-
+ 
 header {
     grid-area: header;
     margin-top: 10px;
@@ -35,6 +35,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-around;
+    position: relative;  
 }
 
 .small-logo {
@@ -127,6 +128,7 @@ figcaption {
     font-weight: bold;
     transition: background-color 0.3s ease;
     cursor: pointer;
+    color: rgb(232, 232, 232);
 }
 
 .youtube-button:hover {
@@ -236,7 +238,7 @@ footer {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 80%;
+    height: 70%;
     text-align: center;
 }
 .contact-info ul {
@@ -248,11 +250,28 @@ footer {
 }
 
 
-/* Responsive Styles */
+.theme-toggle-button {
+    position: sticky;
+    padding: 5px 10px; 
+    font-size: 14px;   
+    border-radius: 5px;
+    background-color: #d4e2e8;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    color: #375070;
+    margin-bottom: 20px;
+}
+
+.theme-toggle-button:hover {
+    background-color: #007f5f;
+    color: white;
+}
+
 @media screen and (max-width: 768px) {
     #content {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto 1fr auto;
+        display: grid;
+        grid-template-columns: 1fr; 
+        grid-template-rows: auto auto 1fr auto; 
         grid-template-areas:
             "header"
             "aside"
@@ -260,7 +279,24 @@ footer {
             "footer";
     }
 
-    .nav-link {
+
+    #main, section, .welcome-text, .fish-details, .contact-info, .fish-gallery, header, aside {
+        max-width: 100%;
+        padding: 0 10px;
+        box-sizing: border-box;
+        overflow: hidden;
+        word-break: break-word; 
+        overflow-wrap: break-word; 
+    }
+
+    figure, img {
         width: 100%;
+        max-width: 100%;
+        height: auto;
+    }
+
+    p, h1, h2, h3, li, figcaption {
+        word-break: break-word;
+        overflow-wrap: break-word;
     }
 }
