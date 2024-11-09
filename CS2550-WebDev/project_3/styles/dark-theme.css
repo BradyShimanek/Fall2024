@@ -1,0 +1,168 @@
+/* Dark Theme for Fish Hub */
+
+body {
+    background-color: #212121;
+    color: lightgray;
+}
+
+header {
+    background-color: #171717;
+    position: relative;
+    /* asdf */
+}
+
+.header-content {
+    color: lightgray;
+}
+
+#content {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    grid-template-areas:
+        "header header"
+        "main aside"
+        "footer footer";
+} 
+
+main {
+    background-color: #2f2f2f;
+}
+
+aside {
+    background-color: #171717;
+    color: white;
+}
+
+.nav-link {
+    background-color: #3a3a3a;
+    color: lightgray;
+}
+
+.nav-link:hover {
+    background-color: #484848;
+    color: white;
+}
+
+footer {
+    background-color: #171717;
+    color: rgb(130, 130, 130);
+}
+
+.youtube-button {
+    background-color: rgba(159, 3, 3, 0.963);
+    color: lightgray;
+}
+
+.youtube-button:hover {
+    background-color: rgb(200, 0, 0);
+}
+
+.nemo-caption {
+    color: rgb(172, 172, 172);
+}
+
+.welcome-text {
+    color: lightgray;
+}
+
+button {
+    background-color: #535353;
+}
+
+#view-gallery-button {
+    background-color: #535353;
+}
+
+#view-gallery-button:hover {
+    background-color: #676767;
+}
+
+.gallery-caption {
+    color: lightgray;
+}
+
+.gallery-controls button {
+    background-color: #3a3a3a;
+}
+
+.gallery-controls button:hover {
+    background-color: #202020;
+}
+
+.view-details {
+    background-color: #3a3a3a;
+}
+
+.view-details:hover {
+    background-color: #202020;
+}
+
+.fish-gallery {
+    background-color: #535353;
+}
+
+.fish-details {
+    color: lightgray;
+}
+
+.gallery-img1, 
+.gallery-img2, 
+.gallery-img3, 
+.gallery-img4, 
+.gallery-img5,
+.clown_fish {
+    border: 5px solid #9d9c9c;
+}
+
+.fish-item {
+    border-radius: 5px;
+}
+
+.theme-toggle-button {
+    padding: 5px 10px; 
+    font-size: 14px;   
+    border-radius: 5px;
+    background-color: #393939;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    color: lightgray;
+    margin-bottom: 20px;
+}
+
+.theme-toggle-button:hover {
+    background-color: #4e4e4e; 
+}
+
+@media screen and (max-width: 768px) {
+    #content {
+        display: grid;
+        grid-template-columns: 1fr; 
+        grid-template-rows: auto auto 1fr auto; 
+        grid-template-areas:
+            "header"
+            "aside"
+            "main"
+            "footer";
+    }
+
+
+    #main, section, .welcome-text, .fish-details, .contact-info, .fish-gallery, header, aside {
+        max-width: 100%;
+        padding: 0 10px;
+        box-sizing: border-box;
+        overflow: hidden;
+        word-break: break-word; 
+        overflow-wrap: break-word; 
+    }
+
+    figure, img {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+    }
+
+    p, h1, h2, h3, li, figcaption {
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+}
