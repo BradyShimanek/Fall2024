@@ -1,3 +1,4 @@
+// Gallery functionality
 document.addEventListener('DOMContentLoaded', () => {
     const viewGalleryButton = document.getElementById('view-gallery-button');
     const fishGallery = document.querySelector('.fish-gallery');
@@ -71,3 +72,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+// Toggle theme functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggleButton = document.getElementById('theme-toggle');
+    let themeLink = document.getElementById('dark-theme-link');
+
+    themeToggleButton.addEventListener('click', () => {
+        if (!themeLink) {
+            themeLink = document.createElement('link');
+            themeLink.rel = 'stylesheet';
+            themeLink.href = 'styles/dark-theme.css';
+            themeLink.id = 'dark-theme-link';
+            document.head.appendChild(themeLink);
+            themeToggleButton.textContent = 'Light Theme';
+        } else {
+            document.head.removeChild(themeLink);
+            themeLink = null;
+            themeToggleButton.textContent = 'Dark Theme';
+        }
+    });
+});   
