@@ -1,3 +1,5 @@
+/* [Project 5 12/02/2024]  Added styles for the new Visit Log */
+
 /* Dark Theme for Fish Hub */
 
 body {
@@ -133,6 +135,83 @@ button {
     background-color: #4e4e4e; 
 }
 
+
+/* Visitor Form Styling */
+#visitor-form {
+    display: none;
+    background-color: #535353;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+#visitor-form h2 {
+    color: #cecece;
+    margin-bottom: 10px;
+}
+
+.form-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.form-grid div {
+    flex: 1 1 calc(50% - 10px);
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input, textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+textarea {
+    resize: none;
+}
+
+button {
+    background-color: #3a3a3a;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #202020;
+}
+
+
+
+/* Styles for invalid/valid inputs */
+input.valid, textarea.valid {
+    border: 2px solid #81c784; 
+    background-color: #2e7d32; 
+    color: #ffffff; 
+}
+
+input.invalid, textarea.invalid {
+    border: 2px solid #e57373; 
+    background-color: #4a2c2c; 
+    color: #ffffff; 
+}
+
+.errorMsg {
+    color: #e57373; /* Light red text */
+}
 @media screen and (max-width: 768px) {
     #content {
         display: grid;
@@ -164,5 +243,9 @@ button {
     p, h1, h2, h3, li, figcaption {
         word-break: break-word;
         overflow-wrap: break-word;
+    }
+
+    .form-grid div {
+        flex: 1 1 100%;
     }
 }
