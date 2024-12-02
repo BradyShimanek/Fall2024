@@ -1,4 +1,4 @@
-/* No changes made -- There were no comments on my Proj. 3 submission. */
+/* [Project 5 12/02/2024]  Added styles for the new Visit Log */
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600&display=swap');
 
 body {
@@ -267,6 +267,90 @@ footer {
     color: white;
 }
 
+
+
+/* Visitor Form Styling */
+#visitor-form {
+    display: none;
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+#visitor-form h2 {
+    color: #023e8a;
+    margin-bottom: 10px;
+}
+
+.form-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.form-grid div {
+    flex: 1 1 calc(50% - 10px);
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input, textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+textarea {
+    resize: none;
+}
+
+button {
+    background-color: #007f5f;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #005a44;
+}
+
+
+
+/* Styles for validating inputs */
+input.was-validated, textarea.was-validated {
+    border: 1px solid #ccc;
+}
+
+input.valid, textarea.valid {
+    border: 2px solid #4caf50; 
+    background-color: #e8f5e9; 
+}
+
+input.invalid, textarea.invalid {
+    border: 2px solid #f44336; 
+    background-color: #fdecea; 
+}
+
+.errorMsg {
+    color: #f44336; 
+    font-size: 0.9rem;
+    margin-top: 5px;
+    display: block; 
+}
+
 @media screen and (max-width: 768px) {
     #content {
         display: grid;
@@ -298,5 +382,9 @@ footer {
     p, h1, h2, h3, li, figcaption {
         word-break: break-word;
         overflow-wrap: break-word;
+    }
+
+    .form-grid div {
+        flex: 1 1 100%;
     }
 }
